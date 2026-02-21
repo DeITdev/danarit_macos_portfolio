@@ -6,9 +6,11 @@ import { useRef } from "react";
 
 const WindowWrapper = (Component, windowKey) => {
   const Wrapped = (props) => {
-    const { focusWindow, windows } = useWindowStore();
-    const win = windows?.[windowKey] || {};
-    const { isOpen = false, zIndex = 0 } = win;
+    const focusWindow = useWindowStore((s) => s.focusWindow);
+    const isOpen = useWindowStore(
+      (s) => s.windows?.[windowKey]?.isOpen ?? false,
+    );
+    const zIndex = useWindowStore((s) => s.windows?.[windowKey]?.zIndex ?? 0);
     const ref = useRef(null);
     const isFirstRender = useRef(true);
 
