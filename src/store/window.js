@@ -22,7 +22,6 @@ const useWindowStore = create(
         if (!win) return;
         win.isOpen = false;
         win.zIndex = INITIAL_Z_INDEX;
-        win.data = null;
       }),
 
     focusWindow: (windowKey) =>
