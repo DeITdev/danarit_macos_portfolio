@@ -2,9 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/macbook.png" />
+    <link id="favicon" rel="icon" type="image/svg+xml" href="/personal-logo-light.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Danar IT Portfolio</title>
+    <script>
+      const favicon = document.getElementById('favicon');
+      const darkMatcher = window.matchMedia('(prefers-color-scheme: dark)');
+      const updateFavicon = (e) => {
+        favicon.href = e.matches ? '/personal-logo-dark.svg' : '/personal-logo-light.svg';
+      };
+      updateFavicon(darkMatcher);
+      darkMatcher.addEventListener('change', updateFavicon);
+    </script>
   </head>
   <body>
     <div id="root"></div>
