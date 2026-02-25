@@ -37,7 +37,7 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl py-3 px-5 select-none;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -53,6 +53,10 @@ body {
       p {
         @apply text-sm cursor-pointer hover:underline transition-all;
       }
+    }
+
+    button {
+      @apply text-sm cursor-pointer hover:underline underline-offset-4 transition-all;
     }
 
     time {
