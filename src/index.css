@@ -53,15 +53,15 @@ body {
       }
     }
 
-    &>div>ul {
+    & > div > ul {
       @apply flex items-center gap-5 max-sm:hidden;
 
-      &>li>p {
+      & > li > p {
         @apply text-sm cursor-pointer hover:underline transition-all dark:text-[#e5e5e5];
       }
     }
 
-    &>div>ul>li>button {
+    & > div > ul > li > button {
       @apply text-sm cursor-pointer hover:underline underline-offset-4 transition-all dark:text-[#e5e5e5];
     }
 
@@ -108,7 +108,7 @@ body {
     }
 
     .tooltip {
-      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
+      @apply py-1! px-3! w-fit! text-center! text-xs! rounded-md! bg-blue-200! text-blue-900! shadow-2xl!;
     }
 
     .dock-icon {
