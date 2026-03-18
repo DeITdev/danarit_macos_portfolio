@@ -2,7 +2,7 @@
 export interface NavLink {
     id: number;
     name: string;
-    type: string;
+    type: WindowKey;
 }
 
 export interface NavIcon {
@@ -11,12 +11,9 @@ export interface NavIcon {
 }
 
 // ── Dock ────────────────────────────────────────────────────
-export interface DockApp {
-    id: string;
-    name: string;
-    icon: string;
-    canOpen: boolean;
-}
+export type DockApp = 
+    | { id: WindowKey; name: string; icon: string; canOpen: true }
+    | { id: string; name: string; icon: string; canOpen: false };
 
 // ── Blog ────────────────────────────────────────────────────
 export interface BlogPost {
@@ -52,6 +49,7 @@ export interface PhotoLink {
 export interface GalleryItem {
     id: number;
     img: string;
+    alt: string;
 }
 
 // ── Location / Finder tree ──────────────────────────────────
@@ -109,9 +107,9 @@ export type WindowConfig = Record<WindowKey, WindowState>;
 export interface WindowStore {
     windows: WindowConfig;
     nextZIndex: number;
-    openWindow: (windowKey: string, data?: LocationItem | null) => void;
-    closeWindow: (windowKey: string) => void;
-    focusWindow: (windowKey: string) => void;
+    openWindow: (windowKey: WindowKey, data?: LocationItem | null) => void;
+    closeWindow: (windowKey: WindowKey) => void;
+    focusWindow: (windowKey: WindowKey) => void;
 }
 
 export interface LocationStore {

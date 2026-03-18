@@ -203,18 +203,22 @@ const gallery: GalleryItem[] = [
     {
         id: 1,
         img: "/images/gal1.png",
+        alt: "Desktop workspace showing dual monitors",
     },
     {
         id: 2,
         img: "/images/gal2.png",
+        alt: "Creative art poster setup",
     },
     {
         id: 3,
         img: "/images/gal3.png",
+        alt: "Macbook showing code editor",
     },
     {
         id: 4,
         img: "/images/gal4.png",
+        alt: "Mobile application interface on an iPhone",
     },
 ];
 

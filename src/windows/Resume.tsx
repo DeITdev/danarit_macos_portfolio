@@ -6,17 +6,18 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-
+import { useState } from "react";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     "pdfjs-dist/build/pdf.worker.min.mjs",
     import.meta.url,
 ).toString();
 
 const Resume = () => {
+    const [error, setError] = useState<Error | null>(null);
+
     return (
         <>
-            <div id="window-header">
+            <div className="window-header">
                 <WindowControls target="resume" />
                 <h2>Resume.pdf</h2>
 
@@ -30,9 +31,18 @@ const Resume = () => {
                 </a>
             </div>
 
-            <Document file="/files/resume.pdf">
-                <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
-            </Document>
+            {error ? (
+                <div className="p-8 text-center text-red-500">
+                    Failed to load PDF: {error.message}
+                </div>
+            ) : (
+                <Document 
+                    file="/files/resume.pdf"
+                    onLoadError={setError}
+                >
+                    <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
+                </Document>
+            )}
         </>
     );
 };

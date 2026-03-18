@@ -1,7 +1,9 @@
 import useWindowStore from "#store/window";
 
+import type { WindowKey } from "#types";
+
 interface WindowControlsProps {
-    target: string;
+    target: WindowKey;
 }
 
 const WindowControls = ({ target }: WindowControlsProps) => {
@@ -15,8 +17,22 @@ const WindowControls = ({ target }: WindowControlsProps) => {
                 aria-label="Close window"
                 onClick={() => closeWindow(target)}
             />
-            <button type="button" className="minimize" aria-label="Minimize window" />
-            <button type="button" className="maximize" aria-label="Maximize window" />
+            <button
+                type="button"
+                className="minimize"
+                aria-label="Minimize window"
+                disabled
+                aria-disabled="true"
+                title="Minimize is not supported"
+            />
+            <button
+                type="button"
+                className="maximize"
+                aria-label="Maximize window"
+                disabled
+                aria-disabled="true"
+                title="Maximize is not supported"
+            />
         </div>
     );
 };

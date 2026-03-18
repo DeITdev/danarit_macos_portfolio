@@ -13,12 +13,7 @@ type ThemeProviderState = {
     setTheme: (theme: Theme) => void;
 };
 
-const initialState: ThemeProviderState = {
-    theme: "system",
-    setTheme: () => null,
-};
-
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+const ThemeProviderContext = createContext<ThemeProviderState | null>(null);
 
 export function ThemeProvider({
     children,
@@ -36,13 +31,19 @@ export function ThemeProvider({
         root.classList.remove("light", "dark");
 
         if (theme === "system") {
-            const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-                .matches
-                ? "dark"
-                : "light";
-
-            root.classList.add(systemTheme);
-            return;
+            const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+            
+            const applySystemTheme = () => {
+                root.classList.remove("light", "dark");
+                root.classList.add(mediaQuery.matches ? "dark" : "light");
+            };
+            
+            applySystemTheme();
+            
+            mediaQuery.addEventListener("change", applySystemTheme);
+            return () => {
+                mediaQuery.removeEventListener("change", applySystemTheme);
+            };
         }
 
         root.classList.add(theme);
@@ -66,7 +67,7 @@ export function ThemeProvider({
 export const useTheme = () => {
     const context = useContext(ThemeProviderContext);
 
-    if (context === undefined)
+    if (!context)
         throw new Error("useTheme must be used within a ThemeProvider");
 
     return context;

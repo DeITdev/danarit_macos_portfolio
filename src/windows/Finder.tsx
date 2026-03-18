@@ -18,7 +18,7 @@ const Finder = () => {
       return window.open(item.href, "_blank");
     }
 
-    openWindow(`${item.fileType}${item.kind}`, item);
+    openWindow(`${item.fileType}${item.kind}` as import("#types").WindowKey, item);
   };
 
   const renderList = (
@@ -49,7 +49,7 @@ const Finder = () => {
 
   return (
     <>
-      <div id="window-header">
+      <div className="window-header">
         <WindowControls target="finder" />
         <Search className="icon" />
       </div>

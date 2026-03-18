@@ -60,11 +60,16 @@ const Dock = () => {
         };
     }, []);
 
-    const toggleApp = (app: { id: string; canOpen: boolean }) => {
+    const toggleApp = (app: import("#types").DockApp) => {
         if (!app.canOpen) return;
 
-        const window = windows[app.id as keyof typeof windows];
-        if (!window) return;
+        const window = windows[app.id];
+        if (!window) {
+            if (import.meta.env.DEV) {
+                console.warn(`ToggleApp warning: app.id "${app.id}" not found in windows store.`);
+            }
+            return;
+        }
 
         if (window.isOpen) {
             closeWindow(app.id);
@@ -76,23 +81,23 @@ const Dock = () => {
     return (
         <section id="dock">
             <div ref={dockRef} className="dock-container">
-                {dockApps.map(({ id, name, icon, canOpen }) => (
-                    <div key={id} className="relative flex justify-center">
+                {dockApps.map((app) => (
+                    <div key={app.id} className="relative flex justify-center">
                         <button
                             type="button"
                             className="dock-icon"
-                            aria-label={name}
+                            aria-label={app.name}
                             data-tooltip-id="dock-tooltip"
-                            data-tooltip-content={name}
+                            data-tooltip-content={app.name}
                             data-tooltip-delay-show={500}
-                            disabled={!canOpen}
-                            onClick={() => toggleApp({ id, canOpen })}
+                            disabled={!app.canOpen}
+                            onClick={() => toggleApp(app)}
                         >
                             <img
-                                src={`/images/${icon}`}
-                                alt={name}
+                                src={`/images/${app.icon}`}
+                                alt={app.name}
                                 loading="lazy"
-                                className={canOpen ? "" : "opacity-60"}
+                                className={app.canOpen ? "" : "opacity-60"}
                             />
                         </button>
                     </div>

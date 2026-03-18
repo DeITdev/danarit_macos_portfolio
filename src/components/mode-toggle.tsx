@@ -15,7 +15,7 @@ export function ModeToggle() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <button type="button" className="icon-hover" aria-label="Toggle theme">
-                    <img src="/icons/mode.svg" alt="theme mode" />
+                    <Monitor className="size-5" />
                 </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

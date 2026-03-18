@@ -16,7 +16,7 @@ import {
 const Safari = () => {
     return (
         <>
-            <div id="window-header">
+            <div className="window-header">
                 <WindowControls target="safari" />
 
                 <PanelLeft className="ml-10 icon" />
@@ -35,6 +35,7 @@ const Safari = () => {
                         <input
                             type="text"
                             placeholder="Search or enter website name"
+                            aria-label="Search or enter website name"
                             className="flex-1"
                         />
                     </div>

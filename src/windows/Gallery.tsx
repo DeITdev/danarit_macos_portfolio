@@ -6,7 +6,7 @@ import { Mail, Search } from "lucide-react";
 const Gallery = () => {
   return (
     <>
-      <div id="window-header">
+      <div className="window-header">
         <WindowControls target="photos" />
         <div className="flex-1" />
         <div className="flex items-center gap-3">
@@ -30,9 +30,9 @@ const Gallery = () => {
 
         <div className="gallery">
           <ul>
-            {gallery.map(({ id, img }) => (
+            {gallery.map(({ id, img, alt }) => (
               <li key={id}>
-                <img src={img} alt={`gallery-${id}`} />
+                <img src={img} alt={alt || `gallery-${id}`} />
               </li>
             ))}
           </ul>
