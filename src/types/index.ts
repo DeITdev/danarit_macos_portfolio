@@ -110,6 +110,7 @@ export interface WindowStore {
     openWindow: (windowKey: WindowKey, data?: LocationItem | null) => void;
     closeWindow: (windowKey: WindowKey) => void;
     focusWindow: (windowKey: WindowKey) => void;
+    resetZIndex: (windowKey: WindowKey) => void;
 }
 
 export interface LocationStore {

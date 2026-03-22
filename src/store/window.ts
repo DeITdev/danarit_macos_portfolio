@@ -22,6 +22,12 @@ const useWindowStore = create<WindowStore>()(
                 const win = state.windows[windowKey as keyof typeof state.windows];
                 if (!win) return;
                 win.isOpen = false;
+            }),
+
+        resetZIndex: (windowKey: string) =>
+            set((state) => {
+                const win = state.windows[windowKey as keyof typeof state.windows];
+                if (!win) return;
                 win.zIndex = INITIAL_Z_INDEX;
             }),
 

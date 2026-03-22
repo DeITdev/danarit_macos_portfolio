@@ -9,26 +9,26 @@ import {
 import { useTheme } from "#components/theme-provider";
 
 export function ModeToggle() {
-    const { setTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <button type="button" className="icon-hover" aria-label="Toggle theme">
-                    <Monitor className="size-5" />
+                <button type="button" className="nav-icon" aria-label="Toggle theme">
+                    <img src="/icons/mode.svg" alt="theme mode" />
                 </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                    <Sun className="size-4" />
+            <DropdownMenuContent align="center" className="px-2 mt-1.5">
+                <DropdownMenuItem className={`mt-2 gap-4 ${theme === "light" ? "bg-accent text-accent-foreground" : ""}`} onClick={() => setTheme("light")}>
+                    <Sun className={`size-4 ${theme === "light" ? "fill-[#FFC030] text-[#FFC030]" : ""}`} />
                     Light
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    <Moon className="size-4" />
+                <DropdownMenuItem className={`my-2 gap-4 ${theme === "dark" ? "bg-accent text-accent-foreground" : ""}`} onClick={() => setTheme("dark")}>
+                    <Moon className={`size-4 ${theme === "dark" ? "fill-[#FF6157] text-[#FF6157]" : ""}`} />
                     Dark
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                    <Monitor className="size-4" />
+                <DropdownMenuItem className={`mb-2 gap-4 ${theme === "system" ? "bg-accent text-accent-foreground" : ""}`} onClick={() => setTheme("system")}>
+                    <Monitor className={`size-4 ${theme === "system" ? "fill-[#2acb42] text-[#2acb42]" : ""}`} />
                     System
                 </DropdownMenuItem>
             </DropdownMenuContent>

@@ -41,7 +41,9 @@ const Navbar = () => {
 							</li>
 						) : (
 							<li key={id}>
-								<img src={img} className="icon-hover" alt={`icon-${img}`} />
+								<button type="button" className="nav-icon" aria-label={`icon-${img}`}>
+									<img src={img} alt={`icon-${img}`} />
+								</button>
 							</li>
 						),
 					)}

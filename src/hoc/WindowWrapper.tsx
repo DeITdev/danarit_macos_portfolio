@@ -18,6 +18,7 @@ const WindowWrapper = <P extends object>(
         const zIndex = useWindowStore(
             (s) => s.windows?.[windowKey as keyof typeof s.windows]?.zIndex ?? 0,
         );
+        const resetZIndex = useWindowStore((s) => s.resetZIndex);
         const ref = useRef<HTMLElement>(null);
         const isFirstRender = useRef(true);
 
@@ -48,6 +49,7 @@ const WindowWrapper = <P extends object>(
                     ease: "power3.in",
                     onComplete: () => {
                         el.style.display = "none";
+                        resetZIndex(windowKey);
                     },
                 });
             }

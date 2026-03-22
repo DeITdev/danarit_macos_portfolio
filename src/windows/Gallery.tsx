@@ -10,15 +10,15 @@ const Gallery = () => {
         <WindowControls target="photos" />
         <div className="flex-1" />
         <div className="flex items-center gap-3">
-          <Mail className="icon" size={18} />
-          <Search className="icon" size={18} />
+          <Mail className="icon" />
+          <Search className="icon" />
         </div>
       </div>
 
       <div className="flex h-125">
         <div className="sidebar">
           <h2>Photos</h2>
-          <ul>
+          <ul className="flex flex-col gap-1">
             {photosLinks.map(({ id, icon, title }) => (
               <li key={id}>
                 <img src={icon} alt={title} />
