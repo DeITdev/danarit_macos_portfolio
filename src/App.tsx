@@ -36,7 +36,7 @@ const DesktopBackground = () => {
 
     return (
         <Iridescence
-            color={isDark ? [0.25, 0.25, 0.6] : [0.35, 0.55, 1]}
+            color={isDark ? [0.15, 0.25, 0.6] : [0.3, 0.55, 1]}
             mouseReact
             amplitude={0.1}
             speed={1}

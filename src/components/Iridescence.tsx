@@ -44,7 +44,7 @@ void main() {
 }
 `;
 
-interface IridescenceProps {
+interface IridescenceProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
   color?: [number, number, number];
   speed?: number;
   amplitude?: number;
@@ -60,13 +60,19 @@ export default function Iridescence({
 }: IridescenceProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0.5, y: 0.5 });
+  const programRef = useRef<Program | null>(null);
+
+  useEffect(() => {
+    if (programRef.current) {
+      programRef.current.uniforms.uColor.value = new Color(...color);
+    }
+  }, [color]);
 
   useEffect(() => {
     if (!ctnDom.current) return;
     const ctn = ctnDom.current;
     const renderer = new Renderer();
     const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0); // Transparent to blend with app dark themes if necessary, or let it draw its own color fully. Wait, the original had 1,1,1,1. I will leave it 1,1,1,1 if that's what was in the snippet, or 0,0,0,0 to let shader fully cover. The shader outputs gl_FragColor with alpha 1.0 anyway.
     gl.clearColor(1, 1, 1, 1);
 
     let program: Program;
@@ -100,6 +106,7 @@ export default function Iridescence({
         uSpeed: { value: speed }
       }
     });
+    programRef.current = program;
 
     const mesh = new Mesh(gl, { geometry, program });
     let animateId: number;
@@ -132,8 +139,9 @@ export default function Iridescence({
       }
       ctn.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
+      programRef.current = null;
     };
-  }, [color, speed, amplitude, mouseReact]);
+  }, [speed, amplitude, mouseReact]);
 
   return <div ref={ctnDom} className="w-full h-full absolute inset-0 -z-10" {...rest} />;
 }
