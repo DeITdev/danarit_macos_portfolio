@@ -20,7 +20,14 @@ gsap.registerPlugin(Draggable);
 
 const DesktopBackground = () => {
     const { theme } = useTheme();
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(() => {
+        if (theme === "system") {
+            return typeof window !== "undefined"
+                ? window.matchMedia("(prefers-color-scheme: dark)").matches
+                : false;
+        }
+        return theme === "dark";
+    });
 
     useEffect(() => {
         if (theme === "system") {
