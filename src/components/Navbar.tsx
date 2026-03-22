@@ -6,11 +6,11 @@ import { ModeToggle } from "#components/mode-toggle";
 
 const Navbar = () => {
 	const { openWindow } = useWindowStore();
-	const [currentTime, setCurrentTime] = useState(() => dayjs().format("ddd MMM D h:mm A"));
+	const [currentTime, setCurrentTime] = useState(() => dayjs().format("ddd D MMM h:mm A"));
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCurrentTime(dayjs().format("ddd MMM D h:mm A"));
+			setCurrentTime(dayjs().format("ddd D MMM h:mm A"));
 		}, 1000);
 		return () => clearInterval(interval);
 	}, []);
