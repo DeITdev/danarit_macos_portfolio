@@ -203,22 +203,22 @@ const gallery: GalleryItem[] = [
     {
         id: 1,
         img: "/images/placeholder-image.png",
-        alt: "Desktop workspace showing dual monitors",
+        alt: "Placeholder image for desktop workspace showing dual monitors",
     },
     {
         id: 2,
         img: "/images/placeholder-image.png",
-        alt: "Creative art poster setup",
+        alt: "Placeholder image for creative art poster setup",
     },
     {
         id: 3,
         img: "/images/placeholder-image.png",
-        alt: "Macbook showing code editor",
+        alt: "Placeholder image for Macbook showing code editor",
     },
     {
         id: 4,
         img: "/images/placeholder-image.png",
-        alt: "Mobile application interface on an iPhone",
+        alt: "Placeholder image for mobile application interface on an iPhone",
     },
 ];
 
@@ -264,7 +264,7 @@ const WORK_LOCATION: LocationFolder = {
                 },
                 {
                     id: 2,
-                    name: "larasdyah.hcm-lab.id",
+                    name: "Larasdyah HCM Lab — Demo (YouTube)",
                     icon: "/images/safari.png",
                     kind: "file",
                     fileType: "url",
