@@ -59,13 +59,32 @@ const WindowWrapper = <P extends object>(
             const el = ref.current;
             if (!el) return;
 
-            const [instance] = Draggable.create(el, {
-                type: "x,y",
-                onPress: () => focusWindow(windowKey),
-            });
+            let instance: Draggable | null = null;
+
+            const handleResize = () => {
+                if (window.innerWidth <= 640) {
+                    gsap.set(el, { x: 0, y: 0 });
+                    if (instance) {
+                        instance.kill();
+                        instance = null;
+                    }
+                } else {
+                    if (!instance) {
+                        instance = Draggable.create(el, {
+                            type: "x,y",
+                            onPress: () => focusWindow(windowKey),
+                            exclude: "input, textarea, select, [contenteditable]",
+                        })[0];
+                    }
+                }
+            };
+
+            handleResize();
+            window.addEventListener("resize", handleResize);
 
             return () => {
-                instance.kill();
+                window.removeEventListener("resize", handleResize);
+                if (instance) instance.kill();
             };
         }, []);
 

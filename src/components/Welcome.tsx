@@ -3,95 +3,96 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 const FONT_WEIGHTS = {
-    subtitle: { min: 300, max: 600, default: 300 },
-    title: { min: 400, max: 900, default: 400 },
+  subtitle: { min: 300, max: 600, default: 300 },
+  title: { min: 400, max: 900, default: 400 },
 } as const;
 
 type TextType = keyof typeof FONT_WEIGHTS;
 
 const renderText = (text: string, className: string, baseWeight = 400) => {
-    return [...text].map((char, i) => (
-        <span
-            key={i}
-            className={className}
-            style={{ fontVariationSettings: `'wght' ${baseWeight}` }}
-        >
-            {char === " " ? "\u00A0" : char}
-        </span>
-    ));
+  return [...text].map((char, i) => (
+    <span
+      key={i}
+      className={className}
+      style={{ fontVariationSettings: `'wght' ${baseWeight}` }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
 };
 
 const setupTextHover = (container: HTMLElement | null, type: TextType) => {
-    if (!container) return () => { };
+  if (!container) return () => {};
 
-    const letters = container.querySelectorAll<HTMLSpanElement>("span");
-    const { min, max, default: base } = FONT_WEIGHTS[type];
+  const letters = container.querySelectorAll<HTMLSpanElement>("span");
+  const { min, max, default: base } = FONT_WEIGHTS[type];
 
-    const animateLetter = (letter: HTMLSpanElement, weight: number, duration = 0.25) => {
-        return gsap.to(letter, {
-            duration,
-            ease: "power2.out",
-            fontVariationSettings: `'wght' ${weight}`,
-        });
-    };
+  const animateLetter = (
+    letter: HTMLSpanElement,
+    weight: number,
+    duration = 0.25,
+  ) => {
+    return gsap.to(letter, {
+      duration,
+      ease: "power2.out",
+      fontVariationSettings: `'wght' ${weight}`,
+    });
+  };
 
-    const handleMouseMove = (e: MouseEvent) => {
-        const { left } = container.getBoundingClientRect();
-        const mouseX = e.clientX - left;
+  const handleMouseMove = (e: MouseEvent) => {
+    const { left } = container.getBoundingClientRect();
+    const mouseX = e.clientX - left;
 
-        letters.forEach((letter) => {
-            const { left: l, width: w } = letter.getBoundingClientRect();
-            const distance = Math.abs(mouseX - (l - left + w / 2));
-            const intensity = Math.exp(-(distance ** 2) / 20000);
+    letters.forEach((letter) => {
+      const { left: l, width: w } = letter.getBoundingClientRect();
+      const distance = Math.abs(mouseX - (l - left + w / 2));
+      const intensity = Math.exp(-(distance ** 2) / 20000);
 
-            animateLetter(letter, min + (max - min) * intensity);
-        });
-    };
-    const handleMouseLeave = () => {
-        letters.forEach((letter) => animateLetter(letter, base, 0.3));
-    };
+      animateLetter(letter, min + (max - min) * intensity);
+    });
+  };
+  const handleMouseLeave = () => {
+    letters.forEach((letter) => animateLetter(letter, base, 0.3));
+  };
 
-    container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseleave", handleMouseLeave);
+  container.addEventListener("mousemove", handleMouseMove);
+  container.addEventListener("mouseleave", handleMouseLeave);
 
-    return () => {
-        container.removeEventListener("mousemove", handleMouseMove);
-        container.removeEventListener("mouseleave", handleMouseLeave);
-    };
+  return () => {
+    container.removeEventListener("mousemove", handleMouseMove);
+    container.removeEventListener("mouseleave", handleMouseLeave);
+  };
 };
 
 const Welcome = () => {
-    const titleRef = useRef<HTMLHeadingElement>(null);
-    const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
 
-    useGSAP(() => {
-        const titleCleanup = setupTextHover(titleRef.current, "title");
-        const subtitleCleanup = setupTextHover(subtitleRef.current, "subtitle");
+  useGSAP(() => {
+    const titleCleanup = setupTextHover(titleRef.current, "title");
+    const subtitleCleanup = setupTextHover(subtitleRef.current, "subtitle");
 
-        return () => {
-            subtitleCleanup();
-            titleCleanup();
-        };
-    }, []);
+    return () => {
+      subtitleCleanup();
+      titleCleanup();
+    };
+  }, []);
 
-    return (
-        <section id="welcome">
-            <p ref={subtitleRef}>
-                {renderText(
-                    "Hi, I'm Danar IT! Welcome to my",
-                    "text-3xl font-georama",
-                    300,
-                )}
-            </p>
-            <h1 ref={titleRef} className="mt-7">
-                {renderText("Portfolio.", "text-9xl italic font-georama")}
-            </h1>
+  return (
+    <section id="welcome">
+      <p ref={subtitleRef}>
+        {renderText(
+          "Hi, I'm Danar IT! Welcome to my",
+          "text-3xl max-sm:text-[22px] max-sm:leading-tight font-georama",
+          300,
+        )}
+      </p>
+      <h1 ref={titleRef} className="mt-7 max-sm:mt-4">
+        {renderText("Portfolio.", "text-9xl max-sm:text-[64px] italic font-georama")}
+      </h1>
 
-            <div className="small-screen">
-                <p>This Portfolio is designed for desktop/tablet screens only.</p>
-            </div>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Welcome;
