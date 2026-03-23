@@ -57,9 +57,10 @@ const Navbar = () => {
 			{/* Mobile Nav */}
 			<div className="sm:hidden absolute top-0 left-0 w-full px-6 py-2.5 flex justify-between items-center z-[9999] pointer-events-none">
 				<time className="text-black dark:text-white text-[16px] font-semibold mt-1 tracking-wide">
-					{dayjs().format("h:mm A")}
+					{dayjs(currentTime, "ddd D MMM h:mm A").format("h:mm A")}
 				</time>
 
+				{/* Decorative notch / Dynamic Island simulation — intentionally has no semantic content. Do not remove or alter without visual regression checks. */}
 				<div className="w-[140px] h-[32px] bg-black rounded-[20px] absolute left-1/2 -translate-x-1/2 top-0 mt-2 z-50 pointer-events-auto shadow-md"></div>
 
 				<div className="flex items-center gap-3 mt-1 text-black dark:text-white">

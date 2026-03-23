@@ -91,9 +91,6 @@ const Welcome = () => {
         {renderText("Portfolio.", "text-9xl max-sm:text-[64px] italic font-georama")}
       </h1>
 
-      <div className="small-screen max-sm:hidden">
-        <p>This Portfolio is designed for desktop/tablet screens only.</p>
-      </div>
     </section>
   );
 };

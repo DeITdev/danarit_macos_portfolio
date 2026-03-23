@@ -17,16 +17,26 @@ const Finder = () => {
   // Track navigation history for mobile back button
   const [mobileNavStack, setMobileNavStack] = useState<(LocationFolder | LocationItem | null)[]>([]);
 
-  // Set default to root on mobile when opened, optionally we can use a window resize listener
+  // Reconcile mobile/desktop state on resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 640 && !isMobileRoot && activeLocation?.id === locations.work.id) {
-        // If we want to force root, we could, but it's okay to just leave the current state
+      if (window.innerWidth <= 640) {
+        // If currently viewing a work-level folder, reset to mobile root
+        if (!isMobileRoot && activeLocation?.id === locations.work.id) {
+          setIsMobileRoot(true);
+          setMobileNavStack([]);
+          setActiveLocation(null);
+        }
+      } else {
+        // Restore desktop behavior: exit mobile root mode
+        if (isMobileRoot) {
+          setIsMobileRoot(false);
+        }
       }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [isMobileRoot, activeLocation]);
+  }, [isMobileRoot, activeLocation, setActiveLocation]);
 
   const openItem = (item: LocationItem) => {
     if (item.kind === "folder") {

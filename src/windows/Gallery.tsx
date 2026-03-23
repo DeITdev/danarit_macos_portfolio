@@ -45,20 +45,26 @@ const Gallery = () => {
         </div>
 
         <div className="gallery w-full">
-          <ul className="max-sm:grid max-sm:grid-cols-2 max-sm:gap-3 max-sm:p-4">
+          <ul>
             {gallery.map(({ id, img, alt }) => (
               <li 
                 key={id} 
                 className="cursor-pointer max-sm:aspect-square overflow-hidden rounded-lg group max-sm:!col-auto max-sm:!row-auto max-sm:!col-span-1 max-sm:!row-span-1"
-                onClick={() => openWindow("imgfile", { 
-                  id, 
-                  name: alt || `gallery-${id}`, 
-                  icon: img, 
-                  imageUrl: img, 
-                  kind: "file" 
-                } as any)}
               >
-                <img src={img} alt={alt || `gallery-${id}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 max-sm:!rounded-lg" />
+                <button
+                  type="button"
+                  className="w-full h-full border-none bg-transparent p-0 cursor-pointer"
+                  onClick={() => openWindow("imgfile", { 
+                    id, 
+                    name: alt || `gallery-${id}`, 
+                    icon: img, 
+                    imageUrl: img, 
+                    kind: "file" 
+                  } as any)}
+                  aria-label={alt || `gallery-${id}`}
+                >
+                  <img src={img} alt={alt || `gallery-${id}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 max-sm:!rounded-lg" />
+                </button>
               </li>
             ))}
           </ul>

@@ -65,6 +65,14 @@ const Resume = () => {
                 <h2 className="text-black dark:text-white font-semibold text-[17px] absolute left-1/2 -translate-x-1/2 pointer-events-none">
                     Resume
                 </h2>
+                <a
+                    href="/files/resume.pdf"
+                    download
+                    className="cursor-pointer p-4 -mr-4 text-[#0a84ff]"
+                    title="Download Resume"
+                >
+                    <Download className="w-5 h-5" />
+                </a>
             </div>
 
             <div ref={containerRef} className="flex flex-col items-center">

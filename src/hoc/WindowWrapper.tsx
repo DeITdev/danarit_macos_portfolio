@@ -63,12 +63,10 @@ const WindowWrapper = <P extends object>(
 
             const handleResize = () => {
                 if (window.innerWidth <= 640) {
+                    gsap.set(el, { x: 0, y: 0 });
                     if (instance) {
                         instance.kill();
                         instance = null;
-                        gsap.set(el, { x: 0, y: 0 }); // Clear desktop drag offsets
-                    } else {
-                        gsap.set(el, { x: 0, y: 0 }); // Ensure cleared on first load mobile
                     }
                 } else {
                     if (!instance) {

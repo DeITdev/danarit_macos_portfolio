@@ -95,14 +95,6 @@ body {
 
   #welcome {
     @apply text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:w-full max-sm:px-0;
-
-    .small-screen {
-      @apply sm:hidden m-7 bg-red-300/20 backdrop-blur-lg p-3 rounded-md absolute top-10;
-
-      p {
-        @apply flex-1 text-[16px] text-center font-roboto text-gray-400;
-      }
-    }
   }
 
   #dock {
@@ -297,6 +289,13 @@ body {
 
       ul {
         @apply grid grid-cols-5 grid-rows-2 gap-2.5;
+
+        @media (max-width: 640px) {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: auto;
+          gap: 0.75rem;
+          padding: 1rem;
+        }
 
         li {
           img {
