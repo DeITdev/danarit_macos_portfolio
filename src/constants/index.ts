@@ -316,7 +316,7 @@ const WORK_LOCATION: LocationFolder = {
                 },
                 {
                     id: 2,
-                    name: "video-demo.mp4",
+                    name: "Video Demo (YouTube)",
                     icon: "/images/safari.png",
                     kind: "file",
                     fileType: "url",
@@ -368,7 +368,7 @@ const WORK_LOCATION: LocationFolder = {
                 },
                 {
                     id: 2,
-                    name: "video-demo.mp4",
+                    name: "Video Demo (YouTube)",
                     icon: "/images/safari.png",
                     kind: "file",
                     fileType: "url",
@@ -443,7 +443,7 @@ const ABOUT_LOCATION: LocationFolder = {
             image: "/images/danar-3.jpg",
             description: [
                 "Hey! I'm Danar 👋, a Researcher, Innovator, and Tech Enthusiast with broad experience across multiple technology fields.",
-                "I’m Expert at immersive technologies (VR, AR, MR), modern web2 & web3 development using TypeScript and Node.js, and integration with Docker for efficient deployment.",
+                "I’m an expert in immersive technologies (VR, AR, MR), modern web2 & web3 development using TypeScript and Node.js, and integration with Docker for efficient deployment.",
                 "I also try to explore how blockchain, IoT, and AI can connect with XR and web systems to create scalable and intelligent solutions.",
                 "I’m not a robot, but I sometimes feel like I need a software update 😅",
             ],
