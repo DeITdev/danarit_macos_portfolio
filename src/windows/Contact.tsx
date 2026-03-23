@@ -30,9 +30,9 @@ const Contact = () => {
             <div className="p-5 space-y-5 max-sm:p-8 max-sm:space-y-0 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:gap-6 max-sm:pb-12 max-sm:pt-10">
                 <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:gap-4 max-sm:text-center">
                     <img
-                        src="/images/adrian.jpg"
-                        alt="Adrian"
-                        className="w-20 rounded-full max-sm:w-[120px] max-sm:h-[120px] max-sm:object-cover max-sm:shadow-lg max-sm:border-2 max-sm:border-white/10"
+                        src="/images/danar-3.jpg"
+                        alt="Danar"
+                        className="w-30 rounded-full max-sm:w-[120px] max-sm:h-[120px] max-sm:object-cover max-sm:shadow-lg max-sm:border-2 max-sm:border-white/10"
                     />
                     <div className="max-sm:space-y-4 max-sm:px-2">
                         <h3 className="my-6 text-xl font-semibold text-black dark:text-white max-sm:text-[28px] max-sm:font-bold max-sm:leading-tight">

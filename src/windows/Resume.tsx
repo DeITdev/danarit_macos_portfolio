@@ -16,6 +16,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 const Resume = () => {
     const { closeWindow } = useWindowStore();
     const [error, setError] = useState<Error | null>(null);
+    const [numPages, setNumPages] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const [pageWidth, setPageWidth] = useState<number | undefined>(undefined);
 
@@ -75,7 +76,11 @@ const Resume = () => {
                 </a>
             </div>
 
-            <div ref={containerRef} className="flex flex-col items-center">
+            <div 
+                ref={containerRef} 
+                className="flex flex-col items-center gap-2 resume-scroll"
+                onPointerDown={(e) => e.stopPropagation()}
+            >
                 {error ? (
                     <div className="p-8 text-center text-red-500">
                         Failed to load PDF: {error.message}
@@ -84,9 +89,12 @@ const Resume = () => {
                     <Document 
                         file="/files/resume.pdf"
                         onLoadError={setError}
-                        className="max-sm:w-full flex justify-center"
+                        onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
+                        className="max-sm:w-full flex flex-col items-center gap-2"
                     >
-                        <Page pageNumber={1} renderTextLayer renderAnnotationLayer width={pageWidth} />
+                        {Array.from({ length: numPages }, (_, i) => (
+                            <Page key={i + 1} pageNumber={i + 1} renderTextLayer renderAnnotationLayer width={pageWidth} />
+                        ))}
                     </Document>
                 )}
             </div>
