@@ -288,7 +288,8 @@ body {
             @apply p-5;
 
             ul {
-                @apply grid grid-cols-5 grid-rows-2 gap-2.5;
+                @apply grid grid-cols-5 gap-2.5;
+                grid-template-rows: 200px 200px;
 
                 @media (max-width: 640px) {
                     grid-template-columns: repeat(2, 1fr);
@@ -298,8 +299,10 @@ body {
                 }
 
                 li {
+                    @apply overflow-hidden rounded-lg;
+
                     img {
-                        @apply size-full object-cover rounded-lg;
+                        @apply w-full h-full object-cover object-center rounded-lg;
                     }
 
                     &:first-child {

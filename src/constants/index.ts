@@ -145,29 +145,29 @@ const socials: Social[] = [
         id: 1,
         text: "Github",
         icon: "/icons/github.svg",
-        bg: "#f4656b",
-        link: "https://github.com/JavaScript-Mastery-Pro",
+        bg: "#b55fdaff",
+        link: "https://github.com/DeITdev",
     },
     {
         id: 2,
-        text: "Platform",
-        icon: "/icons/atom.svg",
-        bg: "#4bcb63",
-        link: "https://jsmastery.com/",
+        text: "Instagram",
+        icon: "/icons/instagram.svg",
+        bg: "#e73f69ff",
+        link: "https://www.instagram.com/danar_it",
     },
     {
         id: 3,
         text: "Twitter/X",
         icon: "/icons/twitter.svg",
         bg: "#ff866b",
-        link: "https://x.com/jsmasterypro",
+        link: "https://x.com/ItDanar",
     },
     {
         id: 4,
         text: "LinkedIn",
         icon: "/icons/linkedin.svg",
         bg: "#05b6f6",
-        link: "https://www.linkedin.com/company/javascriptmastery/posts/?feedView=all",
+        link: "https://www.linkedin.com/in/danarit",
     },
 ];
 
@@ -202,23 +202,23 @@ const photosLinks: PhotoLink[] = [
 const gallery: GalleryItem[] = [
     {
         id: 1,
-        img: "/images/placeholder-image.png",
-        alt: "Placeholder image for desktop workspace showing dual monitors",
+        img: "/images/gal5.png",
+        alt: "Me at marina bay Singapore",
     },
     {
         id: 2,
-        img: "/images/placeholder-image.png",
-        alt: "Placeholder image for creative art poster setup",
+        img: "/images/gal6.jpg",
+        alt: "Me at japanese event",
     },
     {
         id: 3,
-        img: "/images/placeholder-image.png",
-        alt: "Placeholder image for Macbook showing code editor",
+        img: "/images/gal8.png",
+        alt: "Me with my friends",
     },
     {
         id: 4,
-        img: "/images/placeholder-image.png",
-        alt: "Placeholder image for mobile application interface on an iPhone",
+        img: "/images/gal7.jpg",
+        alt: "Me randomly got RTX Quadro 😅 ",
     },
 ];
 
@@ -425,12 +425,12 @@ const ABOUT_LOCATION: LocationFolder = {
         },
         {
             id: 3,
-            name: "conference-me.png",
+            name: "singapore-trip-me.png",
             icon: "/images/image.png",
             kind: "file",
             fileType: "img",
             position: "top-52 left-80",
-            imageUrl: "/images/placeholder-image.png",
+            imageUrl: "/images/gal5.png",
         },
         {
             id: 4,
