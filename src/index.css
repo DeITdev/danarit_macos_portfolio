@@ -420,8 +420,38 @@ body {
     #txtfile {
         @apply w-md absolute top-36 right-32 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
-        h2 {
-            @apply font-bold text-sm text-center w-full dark:text-[#f0f0f0];
+        .window-header {
+            @apply relative z-10 shrink-0;
+
+            h2 {
+                @apply font-bold text-sm text-center w-full dark:text-[#f0f0f0];
+            }
+        }
+
+        .txt-scroll {
+            max-height: calc(85vh - 48px);
+            @apply overflow-y-auto;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                border: 2px solid transparent;
+                background-clip: padding-box;
+            }
+            .dark &::-webkit-scrollbar-thumb {
+                background-color: rgba(
+                    255,
+                    255,
+                    255,
+                    0.7
+                );
+            }
         }
     }
 

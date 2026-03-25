@@ -31,7 +31,8 @@ const Text = () => {
                 </h2>
             </div>
 
-            <div className="p-5 space-y-6 bg-transparent">
+            <div className="p-5 space-y-6 bg-transparent txt-scroll max-sm:overflow-visible max-sm:max-h-none"
+                onPointerDown={(e) => e.stopPropagation()}>
                 {image ? (
                     <img src={image} alt={name} className="w-full h-auto rounded" />
                 ) : null}
