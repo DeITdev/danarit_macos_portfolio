@@ -283,7 +283,7 @@ const WORK_LOCATION: LocationFolder = {
                 {
                     id: 5,
                     name: "Design.fig",
-                    icon: "/images/plain.png",
+                    icon: "/images/figma.png",
                     kind: "file",
                     fileType: "fig",
                     href: "https://www.figma.com/proto/StfuS9hOWfpju0QNoIQpTh/Larasdyah--Virtual-Assistant-AI?node-id=86-364&t=YXotOqpJSsxzAqMN-1",
@@ -335,7 +335,7 @@ const WORK_LOCATION: LocationFolder = {
                 {
                     id: 5,
                     name: "Design.fig",
-                    icon: "/images/plain.png",
+                    icon: "/images/figma.png",
                     kind: "file",
                     fileType: "fig",
                     href: "https://www.figma.com/design/qDqANPkeGPUXqg8H6fIkLk/Efortech_APPS?node-id=1-45&t=tI1IcT30J0t26b4l-1",
@@ -387,7 +387,7 @@ const WORK_LOCATION: LocationFolder = {
                 {
                     id: 5,
                     name: "Design.fig",
-                    icon: "/images/plain.png",
+                    icon: "/images/figma.png",
                     kind: "file",
                     fileType: "fig",
                     href: "https://www.figma.com/design/ABFYWjAihjEqc0JmeEN4Wb/proyek-akhir?node-id=2-7696&t=tI1IcT30J0t26b4l-1",

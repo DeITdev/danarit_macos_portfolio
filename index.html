@@ -2,14 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link id="favicon" rel="icon" type="image/svg+xml" href="/personal-logo-light.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/personal-logo-light.svg" />
+    <link rel="apple-touch-icon" href="/personal-logo-light.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Danar IT Portfolio</title>
     <script>
-      const favicon = document.getElementById('favicon');
+      const favicon = document.querySelector('link[rel="icon"]');
+      const appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
       const darkMatcher = window.matchMedia('(prefers-color-scheme: dark)');
       const updateFavicon = (e) => {
-        favicon.href = e.matches ? '/personal-logo-dark.svg' : '/personal-logo-light.svg';
+        const light = '/personal-logo-light.svg';
+        const dark = '/personal-logo-dark.svg';
+        favicon.href = e.matches ? dark : light;
+        appleIcon.href = e.matches ? dark : light;
       };
       updateFavicon(darkMatcher);
       darkMatcher.addEventListener('change', updateFavicon);
