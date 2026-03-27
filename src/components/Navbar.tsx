@@ -1,12 +1,28 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { navIcons, navLinks } from "#constants";
+import { navIcons, navLinks, locations } from "#constants";
 import useWindowStore from "#store/window";
+import useLocationStore from "#store/location";
 import { ModeToggle } from "#components/mode-toggle";
 
 const Navbar = () => {
 	const { openWindow } = useWindowStore();
+	const { setActiveLocation } = useLocationStore();
 	const [currentTime, setCurrentTime] = useState(() => dayjs().format("ddd D MMM h:mm A"));
+
+	const handleNavClick = (type: string) => {
+		if (type === "finder") {
+			setActiveLocation(locations.work);
+		}
+		openWindow(type as import("#types").WindowKey);
+	};
+
+	const handleUserClick = () => {
+		const aboutMeFile = locations.about.children.find((child) => child.name === "about-me.txt");
+		if (aboutMeFile && "fileType" in aboutMeFile) {
+			openWindow("txtfile", aboutMeFile);
+		}
+	};
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -25,7 +41,7 @@ const Navbar = () => {
 					<ul>
 						{navLinks.map(({ id, name, type }) => (
 							<li key={id}>
-								<button onClick={() => openWindow(type)}>
+								<button onClick={() => handleNavClick(type)}>
 									{name}
 								</button>
 							</li>
@@ -39,6 +55,12 @@ const Navbar = () => {
 							img === "/icons/mode.svg" ? (
 								<li key={id}>
 									<ModeToggle />
+								</li>
+							) : img === "/icons/user.svg" ? (
+								<li key={id}>
+									<button type="button" className="nav-icon" aria-label={`icon-${img}`} onClick={handleUserClick}>
+										<img src={img} alt={`icon-${img}`} />
+									</button>
 								</li>
 							) : (
 								<li key={id}>

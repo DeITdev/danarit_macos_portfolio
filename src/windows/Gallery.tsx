@@ -31,7 +31,7 @@ const Gallery = () => {
         </h2>
       </div>
 
-      <div className="flex max-sm:flex-col bg-transparent">
+      <div className="flex max-sm:flex-col bg-transparent h-full">
         <div className="sidebar max-sm:hidden">
           <h2>Photos</h2>
           <ul className="flex flex-col gap-1">
@@ -44,12 +44,12 @@ const Gallery = () => {
           </ul>
         </div>
 
-        <div className="gallery w-full">
+        <div className="gallery gallery-scroll w-full max-sm:max-h-none max-sm:flex-1">
           <ul>
             {gallery.map(({ id, img, alt }) => (
               <li 
                 key={id} 
-                className="cursor-pointer max-sm:aspect-square overflow-hidden rounded-lg group max-sm:!col-auto max-sm:!row-auto max-sm:!col-span-1 max-sm:!row-span-1"
+                className="cursor-pointer overflow-hidden rounded-lg group"
               >
                 <button
                   type="button"
@@ -63,7 +63,7 @@ const Gallery = () => {
                   } as any)}
                   aria-label={alt || `gallery-${id}`}
                 >
-                  <img src={img} alt={alt || `gallery-${id}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 max-sm:!rounded-lg" />
+                  <img src={img} alt={alt || `gallery-${id}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                 </button>
               </li>
             ))}

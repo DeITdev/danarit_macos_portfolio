@@ -89,7 +89,13 @@ const WindowWrapper = <P extends object>(
         }, []);
 
         return (
-            <section id={windowKey} ref={ref} style={{ zIndex }} className="absolute">
+            <section 
+                id={windowKey} 
+                ref={ref} 
+                style={{ zIndex }} 
+                className="absolute"
+                onMouseDown={() => focusWindow(windowKey)}
+            >
                 <Component {...props} />
             </section>
         );

@@ -2,12 +2,14 @@ import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
 import gsap from "gsap";
 
-import { dockApps } from "#constants";
+import { dockApps, locations } from "#constants";
 import { useGSAP } from "@gsap/react";
 import useWindowStore from "#store/window";
+import useLocationStore from "#store/location";
 
 const Dock = () => {
     const { openWindow, closeWindow, windows } = useWindowStore();
+    const { activeLocation, setActiveLocation } = useLocationStore();
     const dockRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -71,10 +73,37 @@ const Dock = () => {
             return;
         }
 
-        if (window.isOpen) {
-            closeWindow(app.id);
+        if (app.id === "finder") {
+            if (window.isOpen) {
+                if (activeLocation?.id !== locations.work.id) {
+                    setActiveLocation(locations.work);
+                } else {
+                    closeWindow("finder");
+                }
+            } else {
+                setActiveLocation(locations.work);
+                openWindow("finder");
+            }
         } else {
-            openWindow(app.id);
+            if (window.isOpen) {
+                closeWindow(app.id);
+            } else {
+                openWindow(app.id);
+            }
+        }
+    };
+
+    const handleTrashClick = () => {
+        const finderWindow = windows.finder;
+        if (finderWindow?.isOpen) {
+            if (activeLocation?.id === locations.trash.id) {
+                closeWindow("finder");
+            } else {
+                setActiveLocation(locations.trash);
+            }
+        } else {
+            setActiveLocation(locations.trash);
+            openWindow("finder");
         }
     };
 
@@ -90,14 +119,14 @@ const Dock = () => {
                             data-tooltip-id="dock-tooltip"
                             data-tooltip-content={app.name}
                             data-tooltip-delay-show={500}
-                            disabled={!app.canOpen}
-                            onClick={() => toggleApp(app)}
+                            disabled={!app.canOpen && app.id !== "trash"}
+                            onClick={() => app.id === "trash" ? handleTrashClick() : toggleApp(app)}
                         >
                             <img
                                 src={`/images/${app.icon}`}
                                 alt={app.name}
                                 loading="lazy"
-                                className={app.canOpen ? "" : "opacity-60"}
+                                className={app.canOpen || app.id === "trash" ? "" : "opacity-60"}
                             />
                         </button>
                     </div>

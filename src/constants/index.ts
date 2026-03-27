@@ -202,23 +202,33 @@ const photosLinks: PhotoLink[] = [
 const gallery: GalleryItem[] = [
     {
         id: 1,
-        img: "/images/gal5.png",
+        img: "/images/gal1.jpg",
         alt: "Me at marina bay Singapore",
     },
     {
         id: 2,
         img: "/images/gal6.jpg",
-        alt: "Me at japanese event",
+        alt: "Me wear jacket of EEPISAT Team",
     },
     {
         id: 3,
-        img: "/images/gal8.png",
-        alt: "Me with my friends",
+        img: "/images/gal3.jpg",
+        alt: "Me randomly got RTX Quadro 😅",
     },
     {
         id: 4,
-        img: "/images/gal7.jpg",
-        alt: "Me randomly got RTX Quadro 😅 ",
+        img: "/images/gal4.jpg",
+        alt: "Me with my friends at campus",
+    },
+    {
+        id: 5,
+        img: "/images/gal5.jpg",
+        alt: "Me with my friends at EEPISAT",
+    },
+    {
+        id: 6,
+        img: "/images/gal2.jpg",
+        alt: "Me at Japanese Event",
     },
 ];
 
@@ -430,7 +440,7 @@ const ABOUT_LOCATION: LocationFolder = {
             kind: "file",
             fileType: "img",
             position: "top-52 left-80",
-            imageUrl: "/images/gal5.png",
+            imageUrl: "/images/gal1.jpg",
         },
         {
             id: 4,
