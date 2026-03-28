@@ -7,7 +7,7 @@ const Image = () => {
     const { windows } = useWindowStore();
     const data = windows.imgfile?.data;
 
-    if (!data) return null;
+    if (!data || "song" in data) return null;
 
     const { name, imageUrl } = data;
 

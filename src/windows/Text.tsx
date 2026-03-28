@@ -7,7 +7,7 @@ const Text = () => {
     const { windows } = useWindowStore();
     const data = windows.txtfile?.data;
 
-    if (!data) return null;
+    if (!data || "song" in data) return null;
 
     const { name, image, subtitle, description } = data;
 

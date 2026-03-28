@@ -1,5 +1,5 @@
 import { INITIAL_Z_INDEX, WINDOW_CONFIG } from "#constants";
-import type { LocationItem, WindowStore } from "#types";
+import type { LocationItem, WindowStore, MusicPreviewData } from "#types";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -7,7 +7,7 @@ const useWindowStore = create<WindowStore>()(
     immer((set) => ({
         windows: { ...WINDOW_CONFIG },
         nextZIndex: INITIAL_Z_INDEX + 1,
-        openWindow: (windowKey: string, data: LocationItem | null = null) =>
+        openWindow: (windowKey: string, data: LocationItem | MusicPreviewData | null = null) =>
             set((state) => {
                 const win = state.windows[windowKey as keyof typeof state.windows];
                 if (!win) return;

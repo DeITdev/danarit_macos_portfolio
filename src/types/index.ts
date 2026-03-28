@@ -86,10 +86,22 @@ export interface Locations {
 }
 
 // ── Window state ────────────────────────────────────────────
+export interface MusicPreviewData {
+    song: {
+        _id: string;
+        title: string;
+        artist: string;
+        imageUrl: string;
+        audioUrl: string;
+        duration: number;
+        albumId?: string | null;
+    };
+}
+
 export interface WindowState {
     isOpen: boolean;
     zIndex: number;
-    data: LocationItem | null;
+    data: LocationItem | MusicPreviewData | null;
 }
 
 export type WindowKey =
@@ -100,14 +112,16 @@ export type WindowKey =
     | "photos"
     | "terminal"
     | "txtfile"
-    | "imgfile";
+    | "imgfile"
+    | "spotify"
+    | "musicPreview";
 
 export type WindowConfig = Record<WindowKey, WindowState>;
 
 export interface WindowStore {
     windows: WindowConfig;
     nextZIndex: number;
-    openWindow: (windowKey: WindowKey, data?: LocationItem | null) => void;
+    openWindow: (windowKey: WindowKey, data?: LocationItem | MusicPreviewData | null) => void;
     closeWindow: (windowKey: WindowKey) => void;
     focusWindow: (windowKey: WindowKey) => void;
     resetZIndex: (windowKey: WindowKey) => void;

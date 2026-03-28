@@ -73,7 +73,17 @@ const WindowWrapper = <P extends object>(
                         instance = Draggable.create(el, {
                             type: "x,y",
                             onPress: () => focusWindow(windowKey),
-                            exclude: "input, textarea, select, [contenteditable]",
+                            dragClickables: false,
+                            clickableTest: (target: EventTarget | null) => {
+                                const element = target as Element;
+                                if (!element) return false;
+                                return !!(
+                                    element.closest('.no-drag') ||
+                                    element.matches('[role="slider"]') ||
+                                    element.closest('[role="slider"]') ||
+                                    element.closest('input, textarea, select, button, [contenteditable]')
+                                );
+                            },
                         })[0];
                     }
                 }

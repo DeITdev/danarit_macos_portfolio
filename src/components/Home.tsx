@@ -135,6 +135,24 @@ const Home = () => {
             className="w-full aspect-square object-contain drop-shadow-md rounded-[20%]"
           />
         </li>
+        <li
+          className="!relative flex flex-col items-center justify-center cursor-pointer"
+          onClick={() => openWindow("spotify")}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openWindow("spotify");
+            }
+          }}
+        >
+          <img
+            src="/images/spotify.png"
+            alt="Music"
+            className="w-full aspect-square object-contain drop-shadow-md rounded-[20%]"
+          />
+        </li>
       </ul>
     </section>
   );
