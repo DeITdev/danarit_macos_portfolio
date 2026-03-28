@@ -1,6 +1,7 @@
 import type { Song } from "#constants/spotify";
 import useSpotifyStore from "#store/spotify";
 import useWindowStore from "#store/window";
+import { Pause, Play } from "lucide-react";
 
 interface SongCardProps {
     song: Song;
@@ -14,7 +15,6 @@ const SongCard = ({ song, isMobile = false }: SongCardProps) => {
 
     const handleClick = () => {
         if (isMobile) {
-            // On mobile, open the music preview window
             openWindow("musicPreview", {
                 song: {
                     _id: song._id,
@@ -27,7 +27,6 @@ const SongCard = ({ song, isMobile = false }: SongCardProps) => {
                 },
             });
         } else {
-            // On desktop, play directly
             if (isCurrentSong) togglePlay();
             else setCurrentSong(song);
         }
@@ -40,7 +39,7 @@ const SongCard = ({ song, isMobile = false }: SongCardProps) => {
                 transition-all group cursor-pointer ${isMobile ? "p-2" : "p-4"}`}
         >
             <div className={`relative ${isMobile ? "mb-2" : "mb-4"}`}>
-                <div className={`aspect-square rounded-md shadow-lg overflow-hidden rounded-md`}>
+                <div className={`aspect-square rounded-md shadow-lg overflow-hidden`}>
                     <img
                         src={song.imageUrl}
                         alt={song.title}
@@ -54,16 +53,15 @@ const SongCard = ({ song, isMobile = false }: SongCardProps) => {
                             if (isCurrentSong) togglePlay();
                             else setCurrentSong(song);
                         }}
-                        className={`absolute ${isMobile ? "bottom-1 right-1 w-8 h-8" : "bottom-2 right-2 w-10 h-10"} 
-                            rounded-full flex items-center justify-center cursor-pointer
+                        className={`absolute bottom-2 right-2 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer
                             bg-green-500 hover:bg-green-400 hover:scale-105 transition-all 
                             ${isCurrentSong && isPlaying ? "opacity-100" : "opacity-0 group-hover:opacity-100"}
                             translate-y-2 group-hover:translate-y-0`}
                     >
                         {isCurrentSong && isPlaying ? (
-                            <div className={`${isMobile ? "w-2.5 h-2.5" : "w-3 h-3"} bg-black rounded-sm`} />
+                            <Pause className="w-6 h-6 text-black" />
                         ) : (
-                            <div className={`${isMobile ? "w-0 h-0 border-l-[5px]" : "w-0 h-0 border-l-[6px]"} border-l-black border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent ml-0.5`} />
+                            <Play className="w-6 h-6 text-black" />
                         )}
                     </button>
                 )}

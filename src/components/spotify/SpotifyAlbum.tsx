@@ -1,5 +1,6 @@
 import { albums } from "#constants/spotify";
 import useSpotifyStore from "#store/spotify";
+import useWindowStore from "#store/window";
 import { ChevronLeft, Play } from "lucide-react";
 
 interface SpotifyAlbumProps {
@@ -9,6 +10,7 @@ interface SpotifyAlbumProps {
 
 const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
     const { setSelectedAlbumId, playAlbum } = useSpotifyStore();
+    const { openWindow } = useWindowStore();
     const album = albums.find((a) => a._id === albumId);
 
     if (!album) return null;
@@ -19,6 +21,36 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
 
     const handlePlayAll = () => {
         playAlbum(album.songs, 0);
+        if (isMobile) {
+            openWindow("musicPreview", {
+                song: {
+                    _id: album.songs[0]._id,
+                    title: album.songs[0].title,
+                    artist: album.songs[0].artist,
+                    imageUrl: album.songs[0].imageUrl,
+                    audioUrl: album.songs[0].audioUrl,
+                    duration: album.songs[0].duration,
+                    albumId: album.songs[0].albumId,
+                },
+            });
+        }
+    };
+
+    const handleSongClick = (song: (typeof album.songs)[0], index: number) => {
+        playAlbum(album.songs, index);
+        if (isMobile) {
+            openWindow("musicPreview", {
+                song: {
+                    _id: song._id,
+                    title: song.title,
+                    artist: song.artist,
+                    imageUrl: song.imageUrl,
+                    audioUrl: song.audioUrl,
+                    duration: song.duration,
+                    albumId: song.albumId,
+                },
+            });
+        }
     };
 
     return (
@@ -62,13 +94,15 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
                 </button>
             </div>
 
-            {/* Song List */}
+{/* Song List */}
             <div className="space-y-1">
                 {album.songs.map((song, index) => (
-                    <div
+                    <button
+                        type="button"
                         key={song._id}
-                        className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800/50 cursor-pointer group"
-                        onClick={() => playAlbum(album.songs, index)}
+                        className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800/50 cursor-pointer group w-full text-left"
+                        onClick={() => handleSongClick(song, index)}
+                        aria-label={`Play ${song.title} by ${song.artist}`}
                     >
                         <span className="w-5 text-center text-sm text-gray-500 dark:text-zinc-400 group-hover:hidden">
                             {index + 1}
@@ -88,7 +122,7 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
                         <span className="text-sm text-gray-500 dark:text-zinc-400">
                             {Math.floor(song.duration / 60)}:{(song.duration % 60).toString().padStart(2, "0")}
                         </span>
-                    </div>
+                    </button>
                 ))}
             </div>
         </div>

@@ -252,6 +252,7 @@ const MusicPreview = () => {
                     <button
                         onClick={handlePrevious}
                         className="p-3 text-gray-600 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        aria-label="Previous track"
                     >
                         <SkipBack className="w-6 h-6" />
                     </button>
@@ -259,6 +260,7 @@ const MusicPreview = () => {
                     <button
                         onClick={togglePlay}
                         className="w-16 h-16 bg-gray-900 dark:bg-white rounded-full flex items-center justify-center text-white dark:text-gray-900 hover:scale-105 transition-transform"
+                        aria-label={isPlaying ? "Pause" : "Play"}
                     >
                         {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7 ml-1" />}
                     </button>
@@ -266,6 +268,7 @@ const MusicPreview = () => {
                     <button
                         onClick={handleNext}
                         className="p-3 text-gray-600 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        aria-label="Next track"
                     >
                         <SkipForward className="w-6 h-6" />
                     </button>

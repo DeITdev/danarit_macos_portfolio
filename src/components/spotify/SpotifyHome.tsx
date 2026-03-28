@@ -2,13 +2,22 @@ import { featuredSongs, madeForYouSongs, trendingSongs } from "#constants/spotif
 import PlayButton from "./PlayButton";
 import SongCard from "./SongCard";
 import useWindowStore from "#store/window";
+import useSpotifyStore from "#store/spotify";
 
 interface SpotifyHomeProps {
     isMobile?: boolean;
 }
 
+const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "morning";
+    if (hour < 18) return "afternoon";
+    return "evening";
+};
+
 const SpotifyHome = ({ isMobile = false }: SpotifyHomeProps) => {
     const { openWindow } = useWindowStore();
+    const { setCurrentSong, currentSong, togglePlay } = useSpotifyStore();
 
     const handleFeaturedClick = (song: typeof featuredSongs[0]) => {
         if (isMobile) {
@@ -23,19 +32,17 @@ const SpotifyHome = ({ isMobile = false }: SpotifyHomeProps) => {
                     albumId: song.albumId,
                 },
             });
+        } else {
+            const isCurrentSong = currentSong?._id === song._id;
+            if (isCurrentSong) togglePlay();
+            else setCurrentSong(song);
         }
     };
 
     return (
         <div className={`${isMobile ? "px-4 pb-20" : "p-4 sm:p-6 pb-20"}`}>
             <h1 className={`font-bold mb-4 ${isMobile ? "text-xl" : "text-2xl sm:text-3xl"} text-gray-900 dark:text-white`}>
-                Good{' '}
-                {(() => {
-                    const hour = new Date().getHours();
-                    if (hour < 12) return "morning";
-                    if (hour < 18) return "afternoon";
-                    return "evening";
-                })()}
+                Good {getGreeting()}
             </h1>
 
             {/* Featured Section */}
@@ -44,7 +51,7 @@ const SpotifyHome = ({ isMobile = false }: SpotifyHomeProps) => {
                     {featuredSongs.slice(0, 6).map((song) => (
                         <div
                             key={song._id}
-                            onClick={() => isMobile && handleFeaturedClick(song)}
+                            onClick={() => handleFeaturedClick(song)}
                             className={`flex items-center bg-gray-100 dark:bg-zinc-800/50 rounded-md overflow-hidden
                                 hover:bg-gray-200 dark:hover:bg-zinc-700/50 transition-colors group cursor-pointer relative
                                 ${isMobile ? "" : ""}`}

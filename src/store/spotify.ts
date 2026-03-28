@@ -36,11 +36,25 @@ const useSpotifyStore = create<SpotifyStore>((set, get) => ({
     mobileIsPlaying: false,
 
     initializeQueue: (songs: Song[]) => {
-        set({
-            queue: songs,
-            currentSong: get().currentSong || songs[0],
-            currentIndex: get().currentIndex === -1 ? 0 : get().currentIndex,
-        });
+        const currentQueue = get().queue;
+        const queueChanged = currentQueue !== songs || 
+            currentQueue.length !== songs.length ||
+            currentQueue.some((song, i) => song._id !== songs[i]?._id);
+        
+        if (queueChanged) {
+            set({
+                queue: songs,
+                currentSong: songs[0] || null,
+                currentIndex: 0,
+            });
+        } else {
+            const currentIndex = get().currentIndex;
+            const validIndex = currentIndex === -1 || currentIndex >= songs.length ? 0 : currentIndex;
+            set({
+                currentIndex: validIndex,
+                currentSong: songs[validIndex] || null,
+            });
+        }
     },
 
     playAlbum: (songs: Song[], startIndex = 0) => {

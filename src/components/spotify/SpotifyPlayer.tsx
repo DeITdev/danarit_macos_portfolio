@@ -41,16 +41,18 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
 
         const updateTime = () => setCurrentTime(audio.currentTime);
         const updateDuration = () => setDuration(audio.duration || 0);
+        const endedHandler = () => {
+            playNext();
+        };
 
         audio.addEventListener("timeupdate", updateTime);
         audio.addEventListener("loadedmetadata", updateDuration);
-        audio.addEventListener("ended", () => {
-            playNext();
-        });
+        audio.addEventListener("ended", endedHandler);
 
         return () => {
             audio.removeEventListener("timeupdate", updateTime);
             audio.removeEventListener("loadedmetadata", updateDuration);
+            audio.removeEventListener("ended", endedHandler);
         };
     }, [audioRef, playNext]);
 
@@ -120,6 +122,7 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
                         onClick={playPrevious}
                         disabled={!currentSong}
                         className="control-btn"
+                        aria-label="Previous track"
                     >
                         <SkipBack className="w-4 h-4" />
                     </button>
@@ -128,6 +131,7 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
                         onClick={togglePlay}
                         disabled={!currentSong}
                         className="play-btn"
+                        aria-label={isPlaying ? "Pause" : "Play"}
                     >
                         {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
                     </button>
@@ -136,6 +140,7 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
                         onClick={playNext}
                         disabled={!currentSong}
                         className="control-btn"
+                        aria-label="Next track"
                     >
                         <SkipForward className="w-4 h-4" />
                     </button>
