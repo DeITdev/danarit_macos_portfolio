@@ -52,37 +52,43 @@ const navIcons: NavIcon[] = [
 const dockApps: DockApp[] = [
     {
         id: "finder",
-        name: "Portfolio", // was "Finder"
+        name: "Portfolio",
         icon: "finder.png",
         canOpen: true,
     },
     {
         id: "safari",
-        name: "Articles", // was "Safari"
+        name: "Articles",
         icon: "safari.png",
         canOpen: true,
     },
     {
+        id: "spotify",
+        name: "Music",
+        icon: "spotify.png",
+        canOpen: true,
+    },
+    {
         id: "photos",
-        name: "Gallery", // was "Photos"
+        name: "Gallery",
         icon: "photos.png",
         canOpen: true,
     },
     {
         id: "contact",
-        name: "Contact", // or "Get in touch"
+        name: "Contact",
         icon: "contact.png",
         canOpen: true,
     },
     {
         id: "terminal",
-        name: "Skills", // was "Terminal"
+        name: "Skills",
         icon: "terminal.png",
         canOpen: true,
     },
     {
         id: "trash",
-        name: "Archive", // was "Trash"
+        name: "Archive",
         icon: "trash.png",
         canOpen: false,
     },
@@ -524,6 +530,8 @@ const WINDOW_CONFIG: WindowConfig = {
     terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
     txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
     imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+    spotify: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+    musicPreview: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };

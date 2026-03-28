@@ -13,6 +13,8 @@ import {
   Safari,
   Terminal,
   Text,
+  Spotify,
+  MusicPreview,
 } from "#windows";
 import Iridescence from "./components/Iridescence";
 
@@ -68,6 +70,8 @@ const App = () => {
         <Image />
         <Contact />
         <Gallery />
+        <Spotify />
+        <MusicPreview />
         <Home />
       </main>
     </ThemeProvider>
