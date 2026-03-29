@@ -155,6 +155,8 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
                         step={1}
                         className="progress-slider"
                         onValueChange={handleSeek}
+                        aria-label="Seek"
+                        aria-valuetext={formatTime(currentTime)}
                     />
                     <span className="time-display">{formatTime(duration)}</span>
                 </div>
@@ -169,6 +171,8 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
                     step={1}
                     className="volume-slider"
                     onValueChange={handleVolumeChange}
+                    aria-label="Volume"
+                    aria-valuetext={`${volume}%`}
                 />
             </div>
 

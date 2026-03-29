@@ -17,7 +17,7 @@ const getGreeting = () => {
 
 const SpotifyHome = ({ isMobile = false }: SpotifyHomeProps) => {
     const { openWindow } = useWindowStore();
-    const { setCurrentSong, currentSong, togglePlay } = useSpotifyStore();
+    const { playAlbum, currentSong, togglePlay } = useSpotifyStore();
 
     const handleFeaturedClick = (song: typeof featuredSongs[0]) => {
         if (isMobile) {
@@ -35,7 +35,14 @@ const SpotifyHome = ({ isMobile = false }: SpotifyHomeProps) => {
         } else {
             const isCurrentSong = currentSong?._id === song._id;
             if (isCurrentSong) togglePlay();
-            else setCurrentSong(song);
+            else playAlbum([song], 0);
+        }
+    };
+
+    const handleFeaturedKeyDown = (e: React.KeyboardEvent, song: typeof featuredSongs[0]) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleFeaturedClick(song);
         }
     };
 
@@ -51,10 +58,13 @@ const SpotifyHome = ({ isMobile = false }: SpotifyHomeProps) => {
                     {featuredSongs.slice(0, 6).map((song) => (
                         <div
                             key={song._id}
+                            role="button"
+                            tabIndex={0}
                             onClick={() => handleFeaturedClick(song)}
+                            onKeyDown={(e) => handleFeaturedKeyDown(e, song)}
+                            aria-label={`Play ${song.title} by ${song.artist}`}
                             className={`flex items-center bg-gray-100 dark:bg-zinc-800/50 rounded-md overflow-hidden
-                                hover:bg-gray-200 dark:hover:bg-zinc-700/50 transition-colors group cursor-pointer relative
-                                ${isMobile ? "" : ""}`}
+                                hover:bg-gray-200 dark:hover:bg-zinc-700/50 transition-colors group cursor-pointer relative`}
                         >
                             <img
                                 src={song.imageUrl}

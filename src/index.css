@@ -797,7 +797,6 @@ body {
 .spotify-player {
 	touch-action: none;
 	user-select: none;
-	@apply absolute bottom-0 left-0 right-0 h-16 sm:h-20 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 px-2 sm:px-4 flex items-center gap-2 sm:gap-4;
 }
 
 .spotify-player .player-song {
@@ -805,21 +804,25 @@ body {
 }
 
 .spotify-progress {
+	
 	@apply h-1 bg-gray-200 dark:bg-zinc-700 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }
 
 .spotify-progress::-webkit-slider-thumb {
+	
 	@apply w-3 h-3 bg-white dark:bg-zinc-300 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }
 
 .spotify-volume {
+	
 	@apply w-20 h-1 bg-gray-200 dark:bg-zinc-700 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }
 
 .spotify-volume::-webkit-slider-thumb {
+	
 	@apply w-3 h-3 bg-white dark:bg-zinc-300 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }
