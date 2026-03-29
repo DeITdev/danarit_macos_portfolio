@@ -6,5 +6,7 @@ import Text from "#windows/Text";
 import Image from "#windows/Image";
 import Contact from "#windows/Contact";
 import Gallery from "#windows/Gallery";
+import Spotify from "#windows/Spotify";
+import MusicPreview from "#windows/MusicPreview";
 
-export { Terminal, Safari, Resume, Finder, Text, Image, Contact, Gallery };
+export { Terminal, Safari, Resume, Finder, Text, Image, Contact, Gallery, Spotify, MusicPreview };
