@@ -120,7 +120,7 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
                             key={song._id}
                             className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800/50 cursor-pointer group w-full text-left"
                             onClick={() => handleSongClick(song, index)}
-                            aria-label={`Play ${song.title} by ${song.artist}`}
+                            aria-label={isThisPlaying ? `Pause ${song.title} by ${song.artist}` : `Play ${song.title} by ${song.artist}`}
                         >
                             <span className={`w-5 text-center text-sm ${isThisPlaying ? "hidden" : "group-hover:hidden"} text-green-500`}>
                                 {index + 1}

@@ -59,12 +59,13 @@ const useSpotifyStore = create<SpotifyStore>((set, get) => ({
     playAlbum: (songs: Song[], startIndex = 0) => {
         if (songs.length === 0) return;
 
-        const song = songs[startIndex];
+        const clampedIndex = Math.max(0, Math.min(startIndex, songs.length - 1));
+        const song = songs[clampedIndex];
 
         set({
             queue: songs,
             currentSong: song,
-            currentIndex: startIndex,
+            currentIndex: clampedIndex,
             isPlaying: true,
         });
     },
@@ -72,23 +73,31 @@ const useSpotifyStore = create<SpotifyStore>((set, get) => ({
     setQueue: (songs: Song[], startIndex: number) => {
         if (songs.length === 0) return;
 
-        const song = songs[startIndex];
+        const clampedIndex = Math.max(0, Math.min(startIndex, songs.length - 1));
+        const song = songs[clampedIndex];
 
         set({
             queue: songs,
             currentSong: song,
-            currentIndex: startIndex,
+            currentIndex: clampedIndex,
         });
     },
 
     setCurrentSong: (song: Song | null) => {
-        if (!song) return;
+        if (song === null) {
+            set({
+                currentSong: null,
+                isPlaying: false,
+                currentIndex: -1,
+            });
+            return;
+        }
 
         const songIndex = get().queue.findIndex((s) => s._id === song._id);
         set({
             currentSong: song,
             isPlaying: true,
-            currentIndex: songIndex !== -1 ? songIndex : get().currentIndex,
+            currentIndex: songIndex,
         });
     },
 

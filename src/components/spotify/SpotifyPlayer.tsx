@@ -29,6 +29,9 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
         if (audio.currentSrc !== absoluteUrl) {
             audio.src = currentSong.audioUrl;
             audio.load();
+            audio.currentTime = 0;
+            setCurrentTime(0);
+            setDuration(0);
         }
     }, [currentSong, audioRef]);
 
