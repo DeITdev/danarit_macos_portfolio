@@ -20,12 +20,12 @@ export interface Album {
 const featuredSongs: Song[] = [
     {
         _id: "song-1",
-        title: "Midnight Dreams",
-        artist: "Sarah Mitchell",
+        title: "Dari Lubuk Hati",
+        artist: "Sandy Dewangga",
         albumId: "album-1",
         imageUrl: "/cover-images/1.jpg",
         audioUrl: "/music/1.mp3",
-        duration: 234,
+        duration: 0,
     },
     {
         _id: "song-2",
@@ -34,7 +34,7 @@ const featuredSongs: Song[] = [
         albumId: "album-1",
         imageUrl: "/cover-images/2.jpg",
         audioUrl: "/music/2.mp3",
-        duration: 198,
+        duration: 0,
     },
     {
         _id: "song-3",
@@ -43,7 +43,7 @@ const featuredSongs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/3.jpg",
         audioUrl: "/music/3.mp3",
-        duration: 267,
+        duration: 0,
     },
     {
         _id: "song-4",
@@ -52,7 +52,7 @@ const featuredSongs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/4.jpg",
         audioUrl: "/music/4.mp3",
-        duration: 245,
+        duration: 0,
     },
     {
         _id: "song-5",
@@ -61,7 +61,7 @@ const featuredSongs: Song[] = [
         albumId: "album-3",
         imageUrl: "/cover-images/5.jpg",
         audioUrl: "/music/5.mp3",
-        duration: 312,
+        duration: 0,
     },
     {
         _id: "song-6",
@@ -70,7 +70,7 @@ const featuredSongs: Song[] = [
         albumId: "album-3",
         imageUrl: "/cover-images/6.jpg",
         audioUrl: "/music/6.mp3",
-        duration: 189,
+        duration: 0,
     },
 ];
 
@@ -82,7 +82,7 @@ const madeForYouSongs: Song[] = [
         albumId: "album-4",
         imageUrl: "/cover-images/7.jpg",
         audioUrl: "/music/7.mp3",
-        duration: 223,
+        duration: 0,
     },
     {
         _id: "song-8",
@@ -91,7 +91,7 @@ const madeForYouSongs: Song[] = [
         albumId: null,
         imageUrl: "/cover-images/8.jpg",
         audioUrl: "/music/8.mp3",
-        duration: 278,
+        duration: 0,
     },
     {
         _id: "song-9",
@@ -100,7 +100,7 @@ const madeForYouSongs: Song[] = [
         albumId: null,
         imageUrl: "/cover-images/9.jpg",
         audioUrl: "/music/9.mp3",
-        duration: 256,
+        duration: 0,
     },
     {
         _id: "song-10",
@@ -109,7 +109,7 @@ const madeForYouSongs: Song[] = [
         albumId: "album-4",
         imageUrl: "/cover-images/10.jpg",
         audioUrl: "/music/10.mp3",
-        duration: 201,
+        duration: 0,
     },
 ];
 
@@ -121,7 +121,7 @@ const trendingSongs: Song[] = [
         albumId: null,
         imageUrl: "/cover-images/11.jpg",
         audioUrl: "/music/11.mp3",
-        duration: 234,
+        duration: 0,
     },
     {
         _id: "song-12",
@@ -130,7 +130,7 @@ const trendingSongs: Song[] = [
         albumId: null,
         imageUrl: "/cover-images/12.jpg",
         audioUrl: "/music/12.mp3",
-        duration: 189,
+        duration: 0,
     },
     {
         _id: "song-13",
@@ -139,7 +139,7 @@ const trendingSongs: Song[] = [
         albumId: null,
         imageUrl: "/cover-images/13.jpg",
         audioUrl: "/music/13.mp3",
-        duration: 267,
+        duration: 0,
     },
     {
         _id: "song-14",
@@ -148,17 +148,17 @@ const trendingSongs: Song[] = [
         albumId: null,
         imageUrl: "/cover-images/14.jpg",
         audioUrl: "/music/14.mp3",
-        duration: 298,
+        duration: 0,
     },
 ];
 
 const albums: Album[] = [
     {
         _id: "album-1",
-        title: "Urban Nights",
-        artist: "Sarah Mitchell",
+        title: "Aku dan Langit",
+        artist: "Sandy Dewangga",
         imageUrl: "/albums/1.jpg",
-        releaseYear: 2024,
+        releaseYear: 2025,
         songs: featuredSongs.filter((s) => s.albumId === "album-1"),
     },
     {

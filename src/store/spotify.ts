@@ -14,6 +14,7 @@ interface SpotifyStore {
 
     initializeQueue: (songs: Song[]) => void;
     playAlbum: (songs: Song[], startIndex?: number) => void;
+    setQueue: (songs: Song[], startIndex: number) => void;
     setCurrentSong: (song: Song | null) => void;
     togglePlay: () => void;
     playNext: () => void;
@@ -67,6 +68,18 @@ const useSpotifyStore = create<SpotifyStore>((set, get) => ({
             currentSong: song,
             currentIndex: startIndex,
             isPlaying: true,
+        });
+    },
+
+    setQueue: (songs: Song[], startIndex: number) => {
+        if (songs.length === 0) return;
+
+        const song = songs[startIndex];
+
+        set({
+            queue: songs,
+            currentSong: song,
+            currentIndex: startIndex,
         });
     },
 

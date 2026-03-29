@@ -1,7 +1,8 @@
 import { albums } from "#constants/spotify";
 import useSpotifyStore from "#store/spotify";
 import useWindowStore from "#store/window";
-import { ChevronLeft, Play } from "lucide-react";
+import { ChevronLeft, Play, Pause } from "lucide-react";
+import { useSongDurations } from "#hooks/useSongDurations";
 
 interface SpotifyAlbumProps {
     albumId: string;
@@ -9,9 +10,11 @@ interface SpotifyAlbumProps {
 }
 
 const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
-    const { setSelectedAlbumId, playAlbum } = useSpotifyStore();
+    const { setSelectedAlbumId, playAlbum, setQueue, currentSong, isPlaying } = useSpotifyStore();
     const { openWindow } = useWindowStore();
     const album = albums.find((a) => a._id === albumId);
+
+    const { getDuration } = useSongDurations(album?.songs ?? []);
 
     if (!album) return null;
 
@@ -20,8 +23,8 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
     };
 
     const handlePlayAll = () => {
-        playAlbum(album.songs, 0);
         if (isMobile) {
+            setQueue(album.songs, 0);
             openWindow("musicPreview", {
                 song: {
                     _id: album.songs[0]._id,
@@ -33,12 +36,14 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
                     albumId: album.songs[0].albumId,
                 },
             });
+        } else {
+            playAlbum(album.songs, 0);
         }
     };
 
     const handleSongClick = (song: (typeof album.songs)[0], index: number) => {
-        playAlbum(album.songs, index);
         if (isMobile) {
+            setQueue(album.songs, index);
             openWindow("musicPreview", {
                 song: {
                     _id: song._id,
@@ -50,6 +55,13 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
                     albumId: song.albumId,
                 },
             });
+        } else {
+            const isCurrentSong = currentSong?._id === song._id;
+            if (isCurrentSong) {
+                useSpotifyStore.getState().togglePlay();
+            } else {
+                playAlbum(album.songs, index);
+            }
         }
     };
 
@@ -96,34 +108,46 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
 
 {/* Song List */}
             <div className="space-y-1">
-                {album.songs.map((song, index) => (
-                    <button
-                        type="button"
-                        key={song._id}
-                        className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800/50 cursor-pointer group w-full text-left"
-                        onClick={() => handleSongClick(song, index)}
-                        aria-label={`Play ${song.title} by ${song.artist}`}
-                    >
-                        <span className="w-5 text-center text-sm text-gray-500 dark:text-zinc-400 group-hover:hidden">
-                            {index + 1}
-                        </span>
-                        <div className="w-5 hidden group-hover:flex items-center justify-center">
-                            <Play className="w-3 h-3 text-gray-900 dark:text-white" />
-                        </div>
-                        <img
-                            src={song.imageUrl}
-                            alt={song.title}
-                            className="w-10 h-10 object-cover rounded"
-                        />
-                        <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate text-gray-900 dark:text-white">{song.title}</p>
-                            <p className="text-sm text-gray-500 dark:text-zinc-400 truncate">{song.artist}</p>
-                        </div>
-                        <span className="text-sm text-gray-500 dark:text-zinc-400">
-                            {Math.floor(song.duration / 60)}:{(song.duration % 60).toString().padStart(2, "0")}
-                        </span>
-                    </button>
-                ))}
+                {album.songs.map((song, index) => {
+                    const isCurrentSong = currentSong?._id === song._id;
+                    const isThisPlaying = isCurrentSong && isPlaying;
+                    
+                    return (
+                        <button
+                            type="button"
+                            key={song._id}
+                            className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800/50 cursor-pointer group w-full text-left"
+                            onClick={() => handleSongClick(song, index)}
+                            aria-label={`Play ${song.title} by ${song.artist}`}
+                        >
+                            <span className={`w-5 text-center text-sm ${isThisPlaying ? "hidden" : "group-hover:hidden"} text-green-500`}>
+                                {index + 1}
+                            </span>
+                            <div className={`w-5 ${isThisPlaying ? "flex" : "hidden group-hover:flex"} items-center justify-center`}>
+                                {isThisPlaying ? (
+                                    <Pause className="w-3 h-3 text-green-500" />
+                                ) : (
+                                    <Play className="w-3 h-3 text-gray-900 dark:text-white" />
+                                )}
+                            </div>
+                            <img
+                                src={song.imageUrl}
+                                alt={song.title}
+                                className="w-10 h-10 object-cover rounded"
+                            />
+                            <div className="flex-1 min-w-0">
+                                <p className={`font-medium truncate ${isCurrentSong ? "text-green-500" : "text-gray-900 dark:text-white"}`}>{song.title}</p>
+                                <p className="text-sm text-gray-500 dark:text-zinc-400 truncate">{song.artist}</p>
+                            </div>
+                            <span className="text-sm text-gray-500 dark:text-zinc-400">
+                                {(() => {
+                                    const dur = getDuration(song._id, song.duration);
+                                    return `${Math.floor(dur / 60)}:${(dur % 60).toString().padStart(2, "0")}`;
+                                })()}
+                            </span>
+                        </button>
+                    );
+                })}
             </div>
         </div>
     );

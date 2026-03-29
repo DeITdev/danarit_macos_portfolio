@@ -16,6 +16,8 @@ export default defineConfig({
       '#windows': resolve(dirname(fileURLToPath(import.meta.url)), 'src/windows'),
       '#types': resolve(dirname(fileURLToPath(import.meta.url)), 'src/types'),
       '#types/*': resolve(dirname(fileURLToPath(import.meta.url)), 'src/types/*'),
+      '#hooks': resolve(dirname(fileURLToPath(import.meta.url)), 'src/hooks'),
+      '#hooks/*': resolve(dirname(fileURLToPath(import.meta.url)), 'src/hooks/*'),
     }
   }
 })

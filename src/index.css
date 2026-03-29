@@ -711,10 +711,6 @@ body {
 	touch-action: manipulation;
 }
 
-.spotify-player .player-song {
-	@apply items-center gap-4 min-w-[180px];
-}
-
 .spotify-player .song-info {
 	@apply flex-1 min-w-0;
 }
@@ -804,25 +800,21 @@ body {
 }
 
 .spotify-progress {
-	
 	@apply h-1 bg-gray-200 dark:bg-zinc-700 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }
 
 .spotify-progress::-webkit-slider-thumb {
-	
 	@apply w-3 h-3 bg-white dark:bg-zinc-300 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }
 
 .spotify-volume {
-	
 	@apply w-20 h-1 bg-gray-200 dark:bg-zinc-700 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }
 
 .spotify-volume::-webkit-slider-thumb {
-	
 	@apply w-3 h-3 bg-white dark:bg-zinc-300 rounded-full appearance-none cursor-pointer;
 	-webkit-appearance: none;
 }

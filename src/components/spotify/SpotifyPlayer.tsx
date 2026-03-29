@@ -29,9 +29,6 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
         if (audio.currentSrc !== absoluteUrl) {
             audio.src = currentSong.audioUrl;
             audio.load();
-            if (isPlaying) {
-                audio.play().catch(() => {});
-            }
         }
     }, [currentSong, audioRef]);
 
@@ -174,17 +171,6 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
                     aria-label="Volume"
                     aria-valuetext={`${volume}%`}
                 />
-            </div>
-
-            {/* Mobile: Currently playing song - shown below controls */}
-            <div className="mobile-song-info sm:hidden">
-                {currentSong && (
-                    <div className="mobile-song-text">
-                        <span className="mobile-song-title">{currentSong.title}</span>
-                        <span className="mobile-song-dot">•</span>
-                        <span className="mobile-song-artist">{currentSong.artist}</span>
-                    </div>
-                )}
             </div>
         </footer>
     );

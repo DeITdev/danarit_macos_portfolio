@@ -69,9 +69,9 @@ const SpotifyHome = ({ isMobile = false }: SpotifyHomeProps) => {
                             <img
                                 src={song.imageUrl}
                                 alt={song.title}
-                                className={`${isMobile ? "w-12 h-12" : "w-16 sm:w-20 h-16 sm:h-20"} object-cover flex-shrink-0`}
+                                className={`${isMobile ? "w-21 h-21" : "w-16 sm:w-20 h-16 sm:h-20"} object-cover flex-shrink-0`}
                             />
-                            <div className="flex-1 p-3 min-w-0">
+                            <div className="flex-1 p-5 min-w-0">
                                 <p className="font-medium truncate text-gray-900 dark:text-white">{song.title}</p>
                                 <p className="text-sm text-gray-500 dark:text-zinc-400 truncate">{song.artist}</p>
                             </div>
