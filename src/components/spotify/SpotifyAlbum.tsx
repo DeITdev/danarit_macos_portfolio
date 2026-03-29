@@ -2,7 +2,12 @@ import { albums } from "#constants/spotify";
 import useSpotifyStore from "#store/spotify";
 import useWindowStore from "#store/window";
 import { ChevronLeft, Play, Pause } from "lucide-react";
-import { useSongDurations } from "#hooks/useSongDurations";
+
+const formatDuration = (seconds: number): string => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+};
 
 interface SpotifyAlbumProps {
     albumId: string;
@@ -13,8 +18,6 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
     const { setSelectedAlbumId, playAlbum, setQueue, currentSong, isPlaying } = useSpotifyStore();
     const { openWindow } = useWindowStore();
     const album = albums.find((a) => a._id === albumId);
-
-    const { getDuration } = useSongDurations(album?.songs ?? []);
 
     if (!album) return null;
 
@@ -142,10 +145,7 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
                                 <p className="text-sm text-gray-500 dark:text-zinc-400 truncate">{song.artist}</p>
                             </div>
                             <span className="text-sm text-gray-500 dark:text-zinc-400">
-                                {(() => {
-                                    const dur = getDuration(song._id, song.duration);
-                                    return `${Math.floor(dur / 60)}:${(dur % 60).toString().padStart(2, "0")}`;
-                                })()}
+                                {formatDuration(song.duration)}
                             </span>
                         </button>
                     );

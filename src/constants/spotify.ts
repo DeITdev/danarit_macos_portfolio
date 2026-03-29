@@ -25,7 +25,7 @@ const album1Songs: Song[] = [
         albumId: "album-1",
         imageUrl: "/cover-images/1_1.jpg",
         audioUrl: "/music/1_1.mp3",
-        duration: 0,
+        duration: 252,
     },
     {
         _id: "song-1-2",
@@ -34,7 +34,7 @@ const album1Songs: Song[] = [
         albumId: "album-1",
         imageUrl: "/cover-images/1_2.jpg",
         audioUrl: "/music/1_2.mp3",
-        duration: 0,
+        duration: 221,
     },
 ];
 
@@ -46,7 +46,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_1.jpg",
         audioUrl: "/music/2_1.mp3",
-        duration: 0,
+        duration: 85,
     },
     {
         _id: "song-2-2",
@@ -55,7 +55,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_2.jpg",
         audioUrl: "/music/2_2_0.mp3",
-        duration: 0,
+        duration: 97,
     },
     {
         _id: "song-2-3",
@@ -64,7 +64,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_3.jpg",
         audioUrl: "/music/2_3.mp3",
-        duration: 0,
+        duration: 187,
     },
     {
         _id: "song-2-4",
@@ -73,7 +73,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_4.jpg",
         audioUrl: "/music/2_4.mp3",
-        duration: 0,
+        duration: 235,
     },
     {
         _id: "song-2-5",
@@ -82,7 +82,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_5.jpg",
         audioUrl: "/music/2_5.mp3",
-        duration: 0,
+        duration: 228,
     },
     {
         _id: "song-2-6",
@@ -91,7 +91,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_6.jpg",
         audioUrl: "/music/2_6.mp3",
-        duration: 0,
+        duration: 212,
     },
     {
         _id: "song-2-7",
@@ -100,7 +100,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_7.jpg",
         audioUrl: "/music/2_7.mp3",
-        duration: 0,
+        duration: 194,
     },
     {
         _id: "song-2-8",
@@ -109,7 +109,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_8.jpg",
         audioUrl: "/music/2_8.mp3",
-        duration: 0,
+        duration: 228,
     },
     {
         _id: "song-2-9",
@@ -118,7 +118,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_9.jpg",
         audioUrl: "/music/2_9.mp3",
-        duration: 0,
+        duration: 189,
     },
     {
         _id: "song-2-10",
@@ -127,7 +127,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_10.jpg",
         audioUrl: "/music/2_10.mp3",
-        duration: 0,
+        duration: 209,
     },
     {
         _id: "song-2-11",
@@ -136,7 +136,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_11.jpg",
         audioUrl: "/music/2_11.mp3",
-        duration: 0,
+        duration: 207,
     },
     {
         _id: "song-2-12",
@@ -145,7 +145,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_12.jpg",
         audioUrl: "/music/2_12.mp3",
-        duration: 0,
+        duration: 124,
     },
     {
         _id: "song-2-13",
@@ -154,7 +154,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_13.jpg",
         audioUrl: "/music/2_13.mp3",
-        duration: 0,
+        duration: 213,
     },
     {
         _id: "song-2-14",
@@ -163,7 +163,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_14.jpg",
         audioUrl: "/music/2_14.mp3",
-        duration: 0,
+        duration: 194,
     },
     {
         _id: "song-2-15",
@@ -172,7 +172,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_15.jpg",
         audioUrl: "/music/2_15.mp3",
-        duration: 0,
+        duration: 206,
     },
     {
         _id: "song-2-16",
@@ -181,7 +181,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_16.jpg",
         audioUrl: "/music/2_16.mp3",
-        duration: 0,
+        duration: 315,
     },
     {
         _id: "song-2-17",
@@ -190,7 +190,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_17.jpg",
         audioUrl: "/music/2_17.mp3",
-        duration: 0,
+        duration: 116,
     },
     {
         _id: "song-2-18",
@@ -199,7 +199,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_18.jpg",
         audioUrl: "/music/2_18.mp3",
-        duration: 0,
+        duration: 139,
     },
     {
         _id: "song-2-19",
@@ -208,7 +208,7 @@ const album2Songs: Song[] = [
         albumId: "album-2",
         imageUrl: "/cover-images/2_2.jpg",
         audioUrl: "/music/2_2_1.mp3",
-        duration: 0,
+        duration: 109,
     },
 ];
 
@@ -220,7 +220,7 @@ const album3Songs: Song[] = [
         albumId: "album-3",
         imageUrl: "/cover-images/3_0_cover.jpg",
         audioUrl: "/music/3_1.mp3",
-        duration: 0,
+        duration: 215,
     },
     {
         _id: "song-3-2",
@@ -229,7 +229,7 @@ const album3Songs: Song[] = [
         albumId: "album-3",
         imageUrl: "/cover-images/3_0_cover.jpg",
         audioUrl: "/music/3_2.mp3",
-        duration: 0,
+        duration: 195,
     },
     {
         _id: "song-3-3",
@@ -238,7 +238,7 @@ const album3Songs: Song[] = [
         albumId: "album-3",
         imageUrl: "/cover-images/3_0_cover.jpg",
         audioUrl: "/music/3_3.mp3",
-        duration: 0,
+        duration: 175,
     },
 ];
 
@@ -250,7 +250,7 @@ const album4Songs: Song[] = [
         albumId: "album-4",
         imageUrl: "/cover-images/4_0_cover.jpg",
         audioUrl: "/music/4_1.mp3",
-        duration: 0,
+        duration: 352,
     },
     {
         _id: "song-4-2",
@@ -259,7 +259,7 @@ const album4Songs: Song[] = [
         albumId: "album-4",
         imageUrl: "/cover-images/4_0_cover.jpg",
         audioUrl: "/music/4_2.mp3",
-        duration: 0,
+        duration: 245,
     },
 ];
 
