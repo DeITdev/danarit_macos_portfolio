@@ -23,6 +23,8 @@ const SpotifyAlbum = ({ albumId, isMobile = false }: SpotifyAlbumProps) => {
     };
 
     const handlePlayAll = () => {
+        if (album.songs.length === 0) return;
+        
         if (isMobile) {
             setQueue(album.songs, 0);
             openWindow("musicPreview", {

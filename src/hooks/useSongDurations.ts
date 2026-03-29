@@ -5,7 +5,13 @@ export function useSongDurations(songs: Song[]) {
     const [durations, setDurations] = useState<Record<string, number>>({});
 
     useEffect(() => {
+        let cancelled = false;
+        
         const loadDurations = async () => {
+            if (songs.length === 0) {
+                return {};
+            }
+            
             const newDurations: Record<string, number> = {};
             
             await Promise.all(
@@ -15,7 +21,7 @@ export function useSongDurations(songs: Song[]) {
                         audio.preload = "metadata";
                         
                         audio.onloadedmetadata = () => {
-                            if (audio.duration && isFinite(audio.duration)) {
+                            if (!cancelled && audio.duration && isFinite(audio.duration)) {
                                 newDurations[song._id] = Math.floor(audio.duration);
                             }
                             resolve();
@@ -30,12 +36,18 @@ export function useSongDurations(songs: Song[]) {
                 })
             );
             
-            setDurations(newDurations);
+            return newDurations;
         };
         
-        if (songs.length > 0) {
-            loadDurations();
-        }
+        loadDurations().then((result) => {
+            if (!cancelled) {
+                setDurations(result);
+            }
+        });
+        
+        return () => {
+            cancelled = true;
+        };
     }, [songs]);
 
     const getDuration = (songId: string, fallbackDuration: number): number => {

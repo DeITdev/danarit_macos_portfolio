@@ -58,7 +58,12 @@ const SpotifyPlayer = ({ audioRef }: SpotifyPlayerProps) => {
         if (!audio) return;
 
         if (isPlaying && currentSong) {
-            audio.play().catch((e) => console.log("Play error:", e));
+            const songId = currentSong._id;
+            audio.play().catch(() => {
+                if (useSpotifyStore.getState().currentSong?._id === songId) {
+                    useSpotifyStore.getState().setIsPlaying(false);
+                }
+            });
         } else {
             audio.pause();
         }
